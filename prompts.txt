@@ -1,0 +1,3 @@
+PROMPT = """What is the first-line therapy for TB? Could you list the antibiotics commonly used?"""
+
+

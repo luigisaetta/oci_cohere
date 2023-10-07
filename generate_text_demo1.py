@@ -20,7 +20,6 @@ from llm_config import (MAX_TOKENS,
                            TEMPERATURE,
                            FREQUENCY_PENALTY)
 
-from prompts import PROMPT
 
 #
 # Configs
@@ -39,14 +38,31 @@ CONFIG_PROFILE = "DEFAULT"
 config = oci.config.from_file('~/.oci/config', CONFIG_PROFILE)
 
 # Service endpoint
-endpoint = "https://generativeai.aiservice.us-chicago-1.oci.oraclecloud.com"
+ENDPOINT = "https://generativeai.aiservice.us-chicago-1.oci.oraclecloud.com"
 
-generative_ai_client = oci.generative_ai.GenerativeAiClient(config=config, service_endpoint=endpoint, 
+generative_ai_client = oci.generative_ai.GenerativeAiClient(config=config, service_endpoint=ENDPOINT, 
                                                             retry_strategy=oci.retry.NoneRetryStrategy(), timeout=(10,240))
 
 
+#
+# Functions
+#
+def read_prompt():
+    file = open("prompts.txt", "r")
+
+    # Get the lines from the file
+    lines = file.readlines()
+
+    # Close the file
+    file.close()
+
+    # Put the lines into a single variable
+    text = "".join(lines)
+
+    return text
+
 # this is the input prompt. It is written in prompts.py
-prompts = [PROMPT]
+prompts = [read_prompt()]
 
 # to use these functionalitis we need to use the OCI for the OCI GenAI Limited Availability
 generate_text_detail = oci.generative_ai.models.GenerateTextDetails()
