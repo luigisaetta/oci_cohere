@@ -19,6 +19,9 @@ from llm_config import (MAX_TOKENS,
                            TOP_K,
                            TEMPERATURE,
                            FREQUENCY_PENALTY)
+
+from prompts import PROMPT
+
 #
 # Configs
 #
@@ -42,8 +45,8 @@ generative_ai_client = oci.generative_ai.GenerativeAiClient(config=config, servi
                                                             retry_strategy=oci.retry.NoneRetryStrategy(), timeout=(10,240))
 
 
-# this is the input prompt
-prompts = ["What is the first-line therapy for TB? Could you list the antibiotics?"]
+# this is the input prompt. It is written in prompts.py
+prompts = [PROMPT]
 
 # to use these functionalitis we need to use the OCI for the OCI GenAI Limited Availability
 generate_text_detail = oci.generative_ai.models.GenerateTextDetails()
