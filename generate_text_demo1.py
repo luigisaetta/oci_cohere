@@ -14,7 +14,9 @@
 ##########################################################################
 import oci
 
-from config import COMPARTMENT_OCID
+from config import (COMPARTMENT_OCID)
+
+# these parameters control text generation from LLM and creativity
 from llm_config import (MAX_TOKENS,
                            TOP_K,
                            TEMPERATURE,
@@ -41,14 +43,18 @@ config = oci.config.from_file('~/.oci/config', CONFIG_PROFILE)
 ENDPOINT = "https://generativeai.aiservice.us-chicago-1.oci.oraclecloud.com"
 
 generative_ai_client = oci.generative_ai.GenerativeAiClient(config=config, service_endpoint=ENDPOINT, 
-                                                            retry_strategy=oci.retry.NoneRetryStrategy(), timeout=(10,240))
+                                                            retry_strategy=oci.retry.NoneRetryStrategy(), 
+                                                            timeout=(10,240))
 
 
 #
 # Functions
 #
-def read_prompt():
-    file = open("prompts.txt", "r")
+def read_prompt(file_name):
+    print("")
+    print(f"Reading prompt from {file_name}.")
+
+    file = open(file_name, "r")
 
     # Get the lines from the file
     lines = file.readlines()
@@ -59,10 +65,13 @@ def read_prompt():
     # Put the lines into a single variable
     text = "".join(lines)
 
+    print(text)
+    print()
     return text
 
-# this is the input prompt. It is written in prompts.py
-prompts = [read_prompt()]
+# this is the input prompt. It is written in prompts.txt
+PROMPT = read_prompt("prompts.txt")
+prompts = [PROMPT]
 
 # to use these functionalitis we need to use the OCI for the OCI GenAI Limited Availability
 generate_text_detail = oci.generative_ai.models.GenerateTextDetails()
