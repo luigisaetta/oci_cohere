@@ -17,7 +17,7 @@ import oci
 from config import (COMPARTMENT_OCID)
 
 # these parameters control text generation from LLM and creativity
-from llm_config import (MAX_TOKENS,
+from llm_gen_config import (MAX_TOKENS,
                            TOP_K,
                            TEMPERATURE,
                            FREQUENCY_PENALTY)
@@ -54,19 +54,15 @@ def read_prompt(file_name):
     print("")
     print(f"Reading prompt from {file_name}.")
 
-    file = open(file_name, "r")
-
-    # Get the lines from the file
-    lines = file.readlines()
-
-    # Close the file
-    file.close()
+    with open(file_name, "r") as file:
+        # Get the lines from the file
+        lines = file.readlines()
 
     # Put the lines into a single variable
     text = "".join(lines)
 
     print(text)
-    print()
+
     return text
 
 # this is the input prompt. It is written in prompts.txt
@@ -96,7 +92,6 @@ generate_text_response = generative_ai_client.generate_text(generate_text_detail
 output_lists = generate_text_response.data.generated_texts
 
 # Print result
-print()
 print("**************************Generate Texts Result**************************")
 print()
 

@@ -19,7 +19,7 @@ import sys
 from config import (COMPARTMENT_OCID)
 
 # these parameters control text generation from LLM and creativity
-from llm_config import (MAX_TOKENS,
+from llm_gen_config import (MAX_TOKENS,
                            TOP_K,
                            TEMPERATURE,
                            FREQUENCY_PENALTY)
