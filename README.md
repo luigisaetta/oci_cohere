@@ -8,5 +8,8 @@ In config.py you should specify:
 * COMPARTMENT_OCID
 
 ### Demo for Text Generation
-LLM configuration parmeters (max_token, top_k...) must be specified in llm_gen_config.py
+LLM configuration parameters (max_token, top_k...) must be specified in llm_gen_config.py
+
+For examples of these files see the Wiki page.
+
 
