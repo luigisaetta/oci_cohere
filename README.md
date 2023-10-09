@@ -3,11 +3,11 @@ This repository contains the code for all the demos based on **OCI Generative AI
 
 ## Instructions
 
-### General parameters
+#### General parameters
 In config.py you should specify:
 * COMPARTMENT_OCID
 
-### Demo for Text Generation
+#### Demo for Text Generation
 LLM configuration parameters (max_token, top_k...) must be specified in llm_gen_config.py
 
 For examples of these files see the Wiki page.
