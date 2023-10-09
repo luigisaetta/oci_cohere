@@ -1,0 +1,3 @@
+PROMPT = """How a model like Cohere command is trained?"""
+
+
